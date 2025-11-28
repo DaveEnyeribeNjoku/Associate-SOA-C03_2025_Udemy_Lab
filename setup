@@ -1,0 +1,27 @@
+
+sudo apt update
+sudo apt upgrade
+
+
+sudo apt install openssh-client -y
+sudo apt install openssh-server -y
+sudo ufw allow ssh
+
+# info ip adaptateur reseau 
+ip a 
+
+
+# depuis l'inviter de commande admin de la machine physique perso : 
+
+scp -i "C:\Users\David\OneDrive\Bureau\AWS Labs\SOA-C03 key.pem" `
+    "C:\Users\David\OneDrive\Bureau\AWS Labs\SOA-C03 key.pem" `
+    david@10.0.2.15:~/
+    
+# 1. Crée le dossier .ssh s’il n’existe pas
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+
+# 2. Autorise explicitement l’authentification par clé (au cas où)
+sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config   # (optionnel mais plus propre)
+sudo systemctl restart ssh
