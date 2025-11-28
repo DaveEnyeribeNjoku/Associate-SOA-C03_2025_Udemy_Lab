@@ -1,27 +1,43 @@
+1. Ta VM Ubuntu locale (VirtualBox) – Prête à 100 %
 
-sudo apt update
-sudo apt upgrade
+# IP locale de ta VM (mode Bridge)
+ip a | grep 192.168
+# → 192.168.1.47 (ou celle que tu vois)
 
+# Client + serveur SSH installés
+sudo apt install openssh-client openssh-server -y
 
-sudo apt install openssh-client -y
-sudo apt install openssh-server -y
-sudo ufw allow ssh
-
-# info ip adaptateur reseau 
-ip a 
-
-
-# depuis l'inviter de commande admin de la machine physique perso : 
-
-scp -i "C:\Users\David\OneDrive\Bureau\AWS Labs\SOA-C03 key.pem" `
-    "C:\Users\David\OneDrive\Bureau\AWS Labs\SOA-C03 key.pem" `
-    david@10.0.2.15:~/
-    
-# 1. Crée le dossier .ssh s’il n’existe pas
+# Dossier SSH propre
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 
-# 2. Autorise explicitement l’authentification par clé (au cas où)
-sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
-sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config   # (optionnel mais plus propre)
-sudo systemctl restart ssh
+# 2. Copie de ta clé AWS depuis Windows → VM Ubuntu (commande finale qui marche)
+scp -i "C:\Users\David\OneDrive\Bureau\AWS Labs\SOA-C03 key.pem" `
+    "C:\Users\David\OneDrive\Bureau\AWS Labs\SOA-C03 key.pem" `
+    david@192.168.1.47:~/
+
+# 3. Préparation de la clé dans la VM Ubuntu (une seule fois)
+# Renomme proprement et sécurise la clé
+mv "SOA-C03 key.pem" ~/.ssh/aws_lab.pem
+chmod 400 ~/.ssh/aws_lab.pem
+
+4. Fichier ~/.ssh/config (le Graal – plus jamais de commande longue)
+cat << EOF > ~/.ssh/config
+Host bastion
+    HostName 15.237.194.84          # ← change avec la nouvelle IP du prochain lab
+    User ec2-user
+    IdentityFile ~/.ssh/aws_lab.pem
+
+Host private
+    HostName 172.31.15.213           # ← change aussi au prochain lab
+    User ec2-user
+    IdentityFile ~/.ssh/aws_lab.pem
+    ProxyJump bastion                # passe automatiquement par le bastion
+EOF
+
+chmod 600 ~/.ssh/config
+
+#→ Après ça, une seule commande pour aller directement sur l’instance privée :
+
+ssh private
+
