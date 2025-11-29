@@ -11,7 +11,7 @@ sudo apt install openssh-client openssh-server -y
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 
-# 2. Copie de ta clé AWS depuis Windows → VM Ubuntu (commande finale qui marche)
+# 2. Copie de ta clé AWS depuis pc perso Windows → VM Ubuntu (commande finale qui marche)
 scp -i "C:\Users\David\OneDrive\Bureau\AWS Labs\SOA-C03 key.pem" `
     "C:\Users\David\OneDrive\Bureau\AWS Labs\SOA-C03 key.pem" `
     david@192.168.1.47:~/
