@@ -41,3 +41,16 @@ chmod 600 ~/.ssh/config
 
 ssh private
 
+
+
+# 5. Statut du service SSH (le plus important)
+sudo systemctl status ssh          # ou sshd selon la distro
+# → doit afficher "active (running)" en vert
+
+# 6. Version d’OpenSSH installée
+sshd -V                            # (avec deux d minuscules)
+
+# 7. Vérifier si le port 22 est bien à l’écoute
+sudo ss -tuln | grep :22
+# ou
+sudo netstat -tuln | grep :22
