@@ -21,7 +21,11 @@ scp -i "C:\Users\David\OneDrive\Bureau\AWS Labs\SOA-C03 key.pem" `
 mv "SOA-C03 key.pem" ~/.ssh/aws_lab.pem
 chmod 400 ~/.ssh/aws_lab.pem
 
-4. Fichier ~/.ssh/config (le Graal – plus jamais de commande longue)
+
+# 4. ouvrir et modifier ton fichier ~/.ssh/config dans ta VM Ubuntu
+nano ~/.ssh/config
+
+5. Fichier ~/.ssh/config (le Graal – plus jamais de commande longue)
 cat << EOF > ~/.ssh/config
 Host bastion
     HostName 15.237.194.84          # ← change avec la nouvelle IP du prochain lab
@@ -43,14 +47,17 @@ ssh private
 
 
 
-# 5. Statut du service SSH (le plus important)
+# 6. Statut du service SSH (le plus important)
 sudo systemctl status ssh          # ou sshd selon la distro
 # → doit afficher "active (running)" en vert
 
-# 6. Version d’OpenSSH installée
+# 7. Version d’OpenSSH installée
 sshd -V                            # (avec deux d minuscules)
 
-# 7. Vérifier si le port 22 est bien à l’écoute
+# 8. Vérifier si le port 22 est bien à l’écoute
 sudo ss -tuln | grep :22
 # ou
 sudo netstat -tuln | grep :22
+
+# 9.reboot service ssh 
+Sudo systemctl restart ssh
