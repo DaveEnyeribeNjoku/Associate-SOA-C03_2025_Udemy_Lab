@@ -1,4 +1,4 @@
-# Objectif atteind se connecter sur notre instance Ec2 par SSH avec une VM Ubuntu se trouvant en dehors de notre VPC avec une clef RSA.
+# Objectif atteint se connecter sur notre instance Ec2 par SSH avec une VM Ubuntu se trouvant en dehors de notre VPC avec une clef RSA.
 
 # VM Ubuntu dans VirtualBox(mode Bridge)
 # Instance ip publique : 51.44.168.103
