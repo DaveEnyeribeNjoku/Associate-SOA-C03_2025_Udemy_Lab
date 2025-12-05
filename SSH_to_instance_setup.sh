@@ -33,7 +33,7 @@ Sudo systemctl restart ssh
 
 # 6. Copie de ta clé rsa (SOA-C03_key.pem) AWS depuis pc perso Windows → VM Ubuntu (copie colle ou récupére là avec le lecteur dvd)
 
-# 7. Vérifie que nous somme bien dans le répertoir ou se situe la clé et a l'autorisation de s'éxécuter: en 400
+# 7. Vérifie que nous sommes bien dans le répertoir où se situe la clé et notre fichier a l'autorisation de s'éxécuter: en 700
 chmod 700 SOA-C03_key.pem   # <-- Donne les bonnes permissions au fichier SOA-C03_key.pem   
 
  pwd         # <-- vérifier mon emplacement
