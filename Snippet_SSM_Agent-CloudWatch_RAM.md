@@ -37,8 +37,22 @@ aws ssm send-command \
   }' \
   --comment "Enable RAM monitoring only"
 
+
+
 # C’est tout !
 # En moins de 2 minutes l’agent est installé et tu verras apparaître dans CloudWatch → Métriques → CWAgent :
 
 # * mem_used_percent
 # * mem_available_percent
+
+
+
+### Bonus : Voir TOUTES les métriques disponibles sur une instance en 1 commande (super pratique)
+
+# Liste toutes les métriques CloudWatch existantes pour ton instance
+aws cloudwatch list-metrics \
+  --namespace AWS/EC2 \
+  --dimensions Name=InstanceId,Value=i-0abcd1234efgh5678
+
+# Et pour les métriques de l'agent (RAM, disque, etc.)
+aws cloudwatch list-metrics --namespace CWAgent --dimensions Name=InstanceId,Value=i-0abcd1234efgh5678
