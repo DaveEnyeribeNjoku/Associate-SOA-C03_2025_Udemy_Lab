@@ -1,5 +1,5 @@
 ##### AWS CloudWatch est un service de surveillance qui collecte et suit les métriques de vos ressources AWS, y compris les instances EC2. Cependant,
-      par défaut, CloudWatch ne propose pas de métriques natives pour l'utilisation de la RAM (mémoire physique) sur les instances EC2.
+      par défaut, CloudWatch ne propose pas de métriques natives pour l'utilisation de la RAM (mémoire physique) et la collecte des logs sur les instances EC2.
 
 
 #Voici un mini-script ultra-simple que tu peux lancer directement dans ton terminal (ou via AWS CLI)
