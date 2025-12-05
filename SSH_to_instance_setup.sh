@@ -38,7 +38,7 @@ chmod 700 SOA-C03_key.pem   # <-- Donne les bonnes permissions au fichier SOA-C0
 
  pwd         # <-- vérifier mon emplacement
 
-cd /home/hiruma + ls -L    # <-- lister les éléments du répertoire ou je me trouve
+cd /home/hiruma + ls -L    # <--me déplacer dans le répertoire /hiruma + lister les éléments du répertoire ou je me trouve
 
 
 # 8. se connecter à l'instance Ec2 sur l'utilisateur par defaut (ec2-user) avec l'aide de son ip publique.
